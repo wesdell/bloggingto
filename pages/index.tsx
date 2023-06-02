@@ -1,14 +1,14 @@
+import { GetStaticProps } from 'next';
+
+import { type PostNodes } from '@/interfaces';
 import { Categories, Layout, PostCard, PostWidget } from '@/components';
-import { IPost } from '@/interfaces';
+import { getAllPosts } from '@/services/getAllPosts';
 
-const posts: IPost[] = [
-  {
-    title: 'Hello World',
-    excerpt: 'Lorem ipsum text....'
-  }
-];
+interface Props {
+  posts: PostNodes[]
+}
 
-export default function Home() {
+export default function Home({ posts }: Props) {
   return (
     <Layout
       title="BloggingTo | Home"
@@ -18,7 +18,7 @@ export default function Home() {
         <section className="grid grid-cols-1 lg:grid-cols-12 gap-10">
           <article className="col-span-1 lg:col-span-8">
             {
-              posts.map((post) => <PostCard post={post} key={post.title} />)
+              posts.map((post) => <PostCard post={post} key={post.node.title} />)
             }
           </article>
           <article className="col-span-1 lg:col-span-4">
@@ -32,3 +32,13 @@ export default function Home() {
     </Layout>
   );
 }
+
+export const getStaticProps: GetStaticProps = async () => {
+  const posts = await getAllPosts();
+  
+  return {
+    props: {
+      posts
+    }
+  };
+};

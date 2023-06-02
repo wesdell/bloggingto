@@ -1,14 +1,14 @@
-import { IPost } from '@/interfaces';
+import { PostNodes } from '@/interfaces';
 
 interface Props {
-  post: IPost
+  post: PostNodes
 }
 
 export function PostCard({ post }: Props) {
   return (
     <div>
-      {post.title}
-      {post.excerpt}
+      {post.node.title}
+      {post.node.excerpt}
     </div>
   );
 }
