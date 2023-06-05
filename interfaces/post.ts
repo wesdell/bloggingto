@@ -6,6 +6,10 @@ export interface PostsData {
   }
 }
 
+export interface MinifiedPostsData {
+  posts: Post[]
+}
+
 export interface PostNodes {
   node: Post
 }
@@ -29,4 +33,11 @@ export interface Author {
 
 export interface FeaturedImage {
   url: string;
+}
+
+export interface MinifiedPost {
+  title: string
+  featuredImage: FeaturedImage
+  createdAt: Date
+  slug: string
 }

@@ -2,7 +2,7 @@ import { GetStaticProps } from 'next';
 
 import { type PostNodes } from '@/interfaces';
 import { Categories, Layout, PostCard, PostWidget } from '@/components';
-import { getAllPosts } from '@/services/getAllPosts';
+import { getAllPosts } from '@/services';
 
 interface Props {
   posts: PostNodes[]
@@ -18,7 +18,7 @@ export default function Home({ posts }: Props) {
         <section className="grid grid-cols-1 lg:grid-cols-12 gap-10">
           <article className="col-span-1 lg:col-span-8">
             {
-              posts.map((post) => <PostCard post={post} key={post.node.title} />)
+              posts.map((post) => <PostCard post={post.node} key={post.node.title} />)
             }
           </article>
           <article className="col-span-1 lg:col-span-4">
