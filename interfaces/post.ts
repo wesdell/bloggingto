@@ -1,5 +1,9 @@
 import { ICategory } from './';
 
+export interface PostNodes {
+  node: Post
+}
+
 export interface Post {
   author:        Author;
   createdAt:     Date;

@@ -4,8 +4,8 @@ import Link from 'next/link';
 
 import moment from 'moment';
 
-import { getRecentPosts, getRelatedPosts } from '@/services';
 import { type MinifiedPost } from '@/interfaces';
+import { getRecentPosts, getRelatedPosts } from '@/services';
 
 interface Props {
   slug?: string

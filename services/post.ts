@@ -1,12 +1,8 @@
 import { request, gql } from 'graphql-request';
 
-import { MinifiedPost, Post } from '@/interfaces';
+import { type MinifiedPost, type PostNodes } from '@/interfaces';
 
 const ENDPOINT: string = process.env.NEXT_PUBLIC_HYGRAPH_ENVIRONMENT ?? '';
-
-interface PostNodes {
-  node: Post
-}
 
 interface PostsData {
   postsConnection: {
