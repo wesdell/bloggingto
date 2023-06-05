@@ -1,8 +1,18 @@
 import { request, gql } from 'graphql-request';
 
-import { MinifiedPost, MinifiedPostsData, PostNodes, PostsData } from '@/interfaces';
+import { MinifiedPost, Post } from '@/interfaces';
 
 const ENDPOINT: string = process.env.NEXT_PUBLIC_HYGRAPH_ENVIRONMENT ?? '';
+
+interface PostNodes {
+  node: Post
+}
+
+interface PostsData {
+  postsConnection: {
+    edges: PostNodes[]
+  }
+}
 
 export const getAllPosts = async (): Promise<PostNodes[]> => {
   const query = gql`
@@ -44,6 +54,10 @@ export const getAllPosts = async (): Promise<PostNodes[]> => {
   }
 };
 
+interface MinifiedPostsData {
+  posts: MinifiedPost[]
+}
+
 export const getRecentPosts = async (): Promise<MinifiedPost[]> => {
   const query = gql`
     query RecentPosts() {
@@ -70,7 +84,7 @@ export const getRecentPosts = async (): Promise<MinifiedPost[]> => {
   }
 };
 
-export const getRelatedPosts = async (slug: string, categories: string[]): Promise<MinifiedPost[]> => {
+export const getRelatedPosts = async (slug: string = '', categories: string[] = []): Promise<MinifiedPost[]> => {
   const query = gql`
     query RelatedPosts($slug: String!, $categories: [String!]) {
       posts (

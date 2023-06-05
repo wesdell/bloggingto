@@ -1,19 +1,5 @@
 import { ICategory } from './';
 
-export interface PostsData {
-  postsConnection: {
-    edges: PostNodes[]
-  }
-}
-
-export interface MinifiedPostsData {
-  posts: Post[]
-}
-
-export interface PostNodes {
-  node: Post
-}
-
 export interface Post {
   author:        Author;
   createdAt:     Date;
