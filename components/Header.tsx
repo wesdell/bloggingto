@@ -1,19 +1,10 @@
 import Link from 'next/link';
 
-import { ICategory } from '@/interfaces';
-
-const categories: ICategory[] = [
-  {
-    name: 'React',
-    slug: 'react'
-  },
-  {
-    name: 'HTML',
-    slug: 'html'
-  }
-];
+import { useCategories } from '@/hooks';
 
 export function Header() {
+  const { categories } = useCategories();
+
   return (
     <header className="container mx-auto px-10 mb-8">
       <section className="border-b w-full inline-block border-blue-400 py-8 md:flex md:justify-between md:items-center">
@@ -25,7 +16,7 @@ export function Header() {
           </Link>
         </article>
         <article className="hidden md:block">
-          {categories.map((category) => (
+          {categories?.map((category) => (
             <Link href={`/category/${category.slug}`} key={category.slug}>
               <span className="mt-2 align-middle ml-4 font-semibold text-white cursor-pointer">
                 {category.name}
