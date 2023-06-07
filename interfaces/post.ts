@@ -11,7 +11,7 @@ export interface Post {
   slug:          string;
   title:         string;
   featuredImage: FeaturedImage;
-  category:      ICategory;
+  categories:    ICategory[];
 }
 
 export interface Author {
