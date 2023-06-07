@@ -11,6 +11,7 @@ export interface Post {
   slug:          string;
   title:         string;
   featuredImage: FeaturedImage;
+  content: Content
   categories:    ICategory[];
 }
 
@@ -30,4 +31,21 @@ export interface MinifiedPost {
   featuredImage: FeaturedImage
   createdAt: Date
   slug: string
+}
+
+export interface Content {
+  raw: Raw;
+}
+
+export interface Raw {
+  children: RawChild[];
+}
+
+export interface RawChild {
+  type:     string;
+  children: ChildChild[];
+}
+
+export interface ChildChild {
+  text: string;
 }

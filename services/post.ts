@@ -123,6 +123,9 @@ export const getPostDetails = async (slug: string = ''): Promise<Post | null> =>
           }
         }
         createdAt
+        content {
+          raw
+        }
         excerpt
         slug
         title
