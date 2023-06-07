@@ -8,7 +8,7 @@ interface Props {
   posts: PostNodes[]
 }
 
-export default function Home({ posts }: Props) {
+export default function HomePage({ posts }: Props) {
   return (
     <Layout
       title="BloggingTo | Home"

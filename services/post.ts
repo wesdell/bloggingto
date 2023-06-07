@@ -1,6 +1,6 @@
 import { request, gql } from 'graphql-request';
 
-import { type MinifiedPost, type PostNodes } from '@/interfaces';
+import { type Post, type MinifiedPost, type PostNodes } from '@/interfaces';
 
 const ENDPOINT: string = process.env.NEXT_PUBLIC_HYGRAPH_ENVIRONMENT ?? '';
 
@@ -31,7 +31,7 @@ export const getAllPosts = async (): Promise<PostNodes[]> => {
             featuredImage {
               url
             }
-            category {
+            categories {
               name
               slug
             }
@@ -98,10 +98,50 @@ export const getRelatedPosts = async (slug: string = '', categories: string[] = 
   `;
 
   try {
-    const data = await request<MinifiedPostsData>(ENDPOINT, query);
+    const data = await request<MinifiedPostsData>(ENDPOINT, query, { slug, categories });
     return data.posts;
   } catch (error) {
     console.log(error);
     return [];
+  }
+};
+
+interface PostData {
+  post: Post
+}
+
+export const getPostDetails = async (slug: string = ''): Promise<Post | null> => {
+  const query = gql`
+    query PostDetails($slug: String!) {
+      post (where: { slug: $slug }) {
+        author {
+          bio
+          id
+          name
+          photo {
+            url
+          }
+        }
+        createdAt
+        excerpt
+        slug
+        title
+        featuredImage {
+          url
+        }
+        categories {
+          name
+          slug
+        }
+      }
+    }
+  `;
+
+  try {
+    const data = await request<PostData>(ENDPOINT, query, { slug });
+    return data.post;
+  } catch (error) {
+    console.log(error);
+    return null;
   }
 };
