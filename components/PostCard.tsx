@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 
 import moment from 'moment';
 
@@ -12,7 +13,10 @@ export function PostCard({ post }: Props) {
   return (
     <section className="bg-white shadow-lg rounded-lg p-0 lg:p-8 pb-12 mb-8">
       <figure className="relative overflow-hidden shadow-md pb-80 mb-6">
-        <img
+        <Image
+          unoptimized
+          width={100}
+          height={100}
           src={post.featuredImage.url}
           alt={post.title}
           className="object-top absolute h-80 w-full object-cover shadow-lg rounded-t-lg lg:rounded-lg"
@@ -25,11 +29,12 @@ export function PostCard({ post }: Props) {
       </h1>
       <article className="block lg:flex text-center items-center justify-center mb-8 w-full">
         <figure className="flex items-center justify-center mb-4 lg:mb-0 wfull lg:w-auto mr-8">
-          <img
+          <Image
+            unoptimized
             src={post.author.photo.url}
             alt={post.author.name}
-            width="40px"
-            height="40px"
+            width={40}
+            height={40}
             className="align-middle rounded-full"
           />
           <p className="inline align-middle text-gray-700 ml-2 text-lg">

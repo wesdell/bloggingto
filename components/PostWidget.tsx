@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 
 import Link from 'next/link';
+import Image from 'next/image';
 
 import moment from 'moment';
 
@@ -38,10 +39,11 @@ export function PostWidget({ slug, categories }: Props) {
             className="flex items-center w-full mb-4 p-2 transition duration-500 hover:bg-gray-100"
           >
             <figure className="w-16 flex-none">
-              <img
+              <Image
+                unoptimized
                 src={post.featuredImage.url}
-                width="60px"
-                height="60px"
+                width={60}
+                height={60}
                 alt={post.title}
                 className="align-middle rounded-full"
               />
