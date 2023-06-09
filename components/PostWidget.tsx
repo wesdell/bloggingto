@@ -5,7 +5,7 @@ import Image from 'next/image';
 
 import moment from 'moment';
 
-import { type MinifiedPost } from '@/interfaces';
+import type { MinifiedPost } from '@/interfaces';
 import { getRecentPosts, getRelatedPosts } from '@/services';
 
 interface Props {

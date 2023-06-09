@@ -3,7 +3,7 @@ import Image from 'next/image';
 
 import moment from 'moment';
 
-import { type Post } from '@/interfaces';
+import type { Post } from '@/interfaces';
 
 interface Props {
   post: Post

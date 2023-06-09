@@ -1,6 +1,6 @@
 import Image from 'next/image';
 
-import { type Author } from '@/interfaces';
+import type { Author } from '@/interfaces';
 
 interface Props {
   author: Author
