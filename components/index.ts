@@ -4,6 +4,7 @@ export * from './Comments';
 export * from './CommentsForm';
 export * from './Header';
 export * from './Layout';
+export * from './Loader';
 export * from './PostCard';
 export * from './PostDetail';
 export * from './PostWidget';
