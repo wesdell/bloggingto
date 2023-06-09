@@ -1,6 +1,6 @@
-import { GetStaticProps } from 'next';
+import type { GetStaticProps } from 'next';
 
-import { type PostNodes } from '@/interfaces';
+import type { PostNodes } from '@/interfaces';
 import { Categories, Layout, PostCard, PostWidget } from '@/components';
 import { getAllPosts } from '@/services';
 

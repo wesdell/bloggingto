@@ -1,7 +1,8 @@
-import { GetStaticPaths, GetStaticProps } from 'next';
+import type { GetStaticPaths, GetStaticProps } from 'next';
+import { useRouter } from 'next/router';
 
-import { type Post } from '@/interfaces';
-import { Layout, PostDetail, Categories, PostWidget, Author, Comments, CommentsForm } from '@/components';
+import type { Post } from '@/interfaces';
+import { Layout, PostDetail, Categories, PostWidget, Author, Comments, CommentsForm, Loader } from '@/components';
 import { getAllPosts, getPostDetails } from '@/services';
 
 interface Props {
@@ -9,10 +10,16 @@ interface Props {
 }
 
 export default function PostSlugPage({ post }: Props) {
+  const router = useRouter();
+
+  if (router.isFallback) {
+    return <Loader />;
+  }
+
   return (
     <Layout
-      title="BloggingTo | Home"
-      description="The best blog web page to find and talk about software development."
+      title="BloggingTo | Post"
+      description={`${post.excerpt}`}
     >
       <section className="container mx-auto px-10 mb-8">
         <section className="grid grid-cols-1 lg:grid-cols-2 gap-12">
@@ -38,7 +45,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
   
   return {
     paths,
-    fallback: false
+    fallback: true
   };
 };
 
